@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+
+  <div class="wrapper">
+    <h1 class="todo__title">ToDo List</h1>
+    
+    <form class="todo__form">
+      <input type="text" id="input-js" autocomplete="off" class="todo__input" placeholder="Новое задание">
+    </form>
+
+    <div class="action-button">
+      <a href="#" class="action-button__btn" onclick="deleteDone()">Del Done</a>
+      <a href="#" class="action-button__btn" onclick="showApply()">Done</a>
+      <a href="#" class="action-button__btn" onclick="noApply()">Active</a>
+    </div>
+
+    <ul class="out-list" id="toDoList">
+      
+    </ul>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
