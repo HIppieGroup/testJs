@@ -3,6 +3,7 @@ var inputTodo = document.getElementById("input-js");
 var outToDo   = document.getElementById("toDoList");
 var itemsLeft = document.getElementById("footer").querySelector('.footer__items-left');
 var value, editIMP;
+inputTodo.focus();
 
 function todo(text) {
   this.text = text
@@ -25,6 +26,7 @@ function load() {
   }
 }
 load();
+
 
 function saveLocal(list) {
   var sobj;
