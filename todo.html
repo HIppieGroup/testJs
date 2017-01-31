@@ -16,14 +16,21 @@
     </form>
 
     <div class="action-button">
-      <a href="#" class="action-button__btn" onclick="deleteDone()">Del Done</a>
+      <a href="#" class="action-button__btn" onclick="showAll()">Show All</a>
       <a href="#" class="action-button__btn" onclick="showApply()">Done</a>
       <a href="#" class="action-button__btn" onclick="noApply()">Active</a>
     </div>
 
+
     <ul class="out-list" id="toDoList">
       
     </ul>
+    <footer class="footer" id="footer">
+      <ul class="footer__info">
+        <li><span class="footer__items-left">0</span> items left</li>
+        <li><a href="#" class="footer__btn" onclick="deleteDone()">Del Done</a></li>
+      </ul>
+    </footer>
 
   </div>
 

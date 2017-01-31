@@ -64,6 +64,9 @@
       background-color: #d6452c;
       color: #fff;
     }
+    .out-list__item:hover .del-close{
+      opacity: 1;
+    }
 
     .out-list__item_done {
       background-color: #5484a4;
@@ -117,4 +120,55 @@
       color: #5484a4;
     }
 
-  
+.edit-imp {
+  background-color: transparent;
+  margin: 10px 0;
+  width: 100%;
+  outline: -webkit-focus-ring-color auto 5px;
+  border: none;
+  font-size: 28px;
+  font-weight: 200;
+  color: #fff;
+}
+
+.footer__info {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 0 20px;
+  list-style: none;
+}
+.footer__btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: #95dee3;
+  text-decoration: none;
+  color: #272727;
+}
+.footer__btn:hover {
+  color: #5484a4;
+}
+
+.del-close {
+  opacity: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: #3399ce;
+  margin-right: 5px;
+}
+.del-close:hover {
+  background-color: red;
+}
+
+
