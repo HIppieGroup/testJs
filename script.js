@@ -2,7 +2,8 @@ var todoList  = [], aplyList = [];
 var inputTodo = document.getElementById("input-js");
 var outToDo   = document.getElementById("toDoList");
 var itemsLeft = document.getElementById("footer").querySelector('.footer__items-left');
-var value, editIMP;
+var arrowDown = document.querySelector(".arrow-down");
+var value, editIMP, arrow;
 inputTodo.focus();
 
 function todo(text) {
@@ -23,9 +24,25 @@ function load() {
       todoList.push(sobj);
     }
     renderAll(todoList);
+    arrowDef();
   }
 }
 load();
+
+
+function arrowDef() {
+  var count = 0;
+  for (var i = 0; i <= todoList.length -1; i++) {
+   if(todoList[i].aply == true) {
+    count += 1;
+   }
+  }
+  if (count == todoList.length) {
+    arrow = true;
+   } else {
+    arrow = false;
+   }
+}
 
 
 function saveLocal(list) {
@@ -44,7 +61,13 @@ inputTodo.onkeydown = function (e) {
   value = inputTodo.value;
   if (value) {
     todoList.push(new todo(value));
-    renderAll(todoList)
+
+    if (outToDo.getAttribute("date-list") == "done-list"){
+      showApply()
+    } else {
+      renderAll(todoList)
+    }
+    
     saveLocal(todoList);
     inputTodo.value = '';
   }   
@@ -69,7 +92,7 @@ function renderAll(list) {
       element.innerHTML = "<a href='#' onclick='deleteSelect(event)' class='del-close' data-num="+ i +"></a><span class='out-list__content'>"+t.text+"</span>";
       outToDo.appendChild(element);
     }
-    if (t.aply == true) {
+    if (t.aply == false) {
       itemsCount += 1;
     }
   }
@@ -143,6 +166,7 @@ editIMP.onblur = function() {
 }
 
 function showAll() {
+  outToDo.setAttribute("date-list", "all-list")
   for (var i = 0; i <= todoList.length -1; i++) {
       todoList[i].show = true;
     }
@@ -156,7 +180,7 @@ function deleteSelect(event) {
 
   todoList.splice(attr,1);
 
-  renderAll(todoList)
+  renderAll(todoList);
   saveLocal(todoList);
   return false;
 }
@@ -173,6 +197,10 @@ function deliteItem(event) {
 }
 
 function showApply() {
+
+  outToDo.setAttribute("date-list", "done-list"); 
+
+
   var list =[];
   for (var i = 0; i <= todoList.length -1; i++) {
     if (todoList[i].aply == false) {
@@ -185,6 +213,7 @@ function showApply() {
 }
 
 function noApply() {
+  outToDo.setAttribute("date-list", "active-list");
   var list =[];
   for (var i = 0; i <= todoList.length -1; i++) {
     if (todoList[i].aply == true) {
@@ -205,4 +234,30 @@ function deleteDone() {
   renderAll(todoList);
   saveLocal(todoList);
   return false;
+}
+
+
+
+arrowDown.onclick = function (event) {
+
+  if (arrow == false) {
+    for (var i = 0; i <= todoList.length -1; i++) {
+      todoList[i].aply = true;
+    }
+    arrow = true;
+  } else {
+    for (var i = 0; i <= todoList.length -1; i++) {
+      todoList[i].aply = false;
+    }
+    arrow = false;
+  }
+  saveLocal(todoList);
+  if (outToDo.getAttribute("date-list") == "done-list"){
+    showApply();
+  } else if(outToDo.getAttribute("date-list") == "active-list"){
+    noApply();
+  } else {
+    renderAll(todoList);
+  }
+
 }

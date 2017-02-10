@@ -19,10 +19,12 @@
     }
 
     .todo__input {
-      width: 100%;
+      width: 87%;
+      display: inline-block;
       box-sizing: border-box;
       border: none;
       padding: 0 20px;
+      padding-left: 0;
       background-color: #95dee3;
       outline: none;
       font-size: 25px;
@@ -171,4 +173,17 @@
   background-color: red;
 }
 
+.arrow-down {
+  display: inline-block;
+  width: 8%;
+  height: 34px;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #79b5b9;
+  text-align: center;
+}
+.arrow-down:hover {
+  color: #517b7d;
+}
 
