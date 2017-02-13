@@ -3,8 +3,10 @@ var inputTodo = document.getElementById("input-js");
 var outToDo   = document.getElementById("toDoList");
 var itemsLeft = document.getElementById("footer").querySelector('.footer__items-left');
 var arrowDown = document.querySelector(".arrow-down");
+var btnGroup  = document.querySelectorAll(".action-button__btn");
 var value, editIMP, arrow;
 inputTodo.focus();
+
 
 function todo(text) {
   this.text = text
@@ -63,9 +65,9 @@ inputTodo.onkeydown = function (e) {
     todoList.push(new todo(value));
 
     if (outToDo.getAttribute("date-list") == "done-list"){
-      showApply()
+      showApply();
     } else {
-      renderAll(todoList)
+      renderAll(todoList);
     }
     
     saveLocal(todoList);
@@ -104,7 +106,6 @@ function renderAll(list) {
 
 outToDo.ondblclick = function(event) {
   var target = event.target; 
-
 
   if (target.tagName == 'LI' && target.className == 'out-list__item' ) {
     editItem(target);
@@ -165,7 +166,19 @@ editIMP.onblur = function() {
 
 }
 
-function showAll() {
+function removeActive() {
+  btnGroup.forEach((element)=>{
+    element.classList.remove("active_btn");
+  })
+}
+
+function showAll(event) {
+
+  var event = event ? event.target : btnGroup[0];
+  removeActive();
+  event.classList.add("active_btn");
+  
+
   outToDo.setAttribute("date-list", "all-list")
   for (var i = 0; i <= todoList.length -1; i++) {
       todoList[i].show = true;
@@ -191,15 +204,23 @@ function deliteItem(event) {
   var attr = item.getAttribute("data-num");
   var parent = item.parentNode.remove();
   todoList[attr].aply = true;
-  renderAll(todoList)
+
+  if (outToDo.getAttribute("date-list") == "active-list") {
+    noApply();
+  }else {
+    renderAll(todoList);
+  }
   saveLocal(todoList);
   return false;
 }
 
-function showApply() {
+function showApply(event) {
+
+  var event = event ? event.target : btnGroup[1];
+  removeActive();
+  event.classList.add("active_btn");
 
   outToDo.setAttribute("date-list", "done-list"); 
-
 
   var list =[];
   for (var i = 0; i <= todoList.length -1; i++) {
@@ -212,7 +233,11 @@ function showApply() {
   renderAll(todoList);
 }
 
-function noApply() {
+function noApply(event) {
+  var event = event ? event.target : btnGroup[2];
+  removeActive();
+  event.classList.add("active_btn");
+
   outToDo.setAttribute("date-list", "active-list");
   var list =[];
   for (var i = 0; i <= todoList.length -1; i++) {

@@ -119,7 +119,7 @@
       border-right: none;
     }
     .action-button__btn:hover {
-      color: #5484a4;
+      color: #d6452c;
     }
 
 .edit-imp {
@@ -186,4 +186,6 @@
 .arrow-down:hover {
   color: #517b7d;
 }
-
+.active_btn {
+  color: #d6452c;
+}
